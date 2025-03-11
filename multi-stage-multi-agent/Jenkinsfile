@@ -10,12 +10,13 @@ pipeline {
       }
     }
     stage('Front-end') {
-      agent {
-        docker { image 'node:16-alpine' }
-      }
-      steps {
-        sh 'node --version'
-      }
-    }
+  agent {
+    docker { image 'openjdk:17-jdk' }
+  }
+  steps {
+    sh 'echo "public class HelloWorld { public static void main(String[] args) { System.out.println(\\"Hello, World!\\"); } }" > HelloWorld.java && javac HelloWorld.java && java HelloWorld'
   }
 }
+      }
+    }
+
